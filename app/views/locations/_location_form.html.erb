@@ -1,0 +1,14 @@
+<%= form_for (Location.new) do |f| %>
+<br>
+Name:
+<%= f.text_field :name%>
+<br>
+Description:
+ <%= f.text_field :description%>
+ <br>
+ location:
+ <%= f.text_field :location%>
+ <br>
+ Image:<%= f.text_field :img_url%>
+ <%= f.submit "Create Location"%>
+<% end %>

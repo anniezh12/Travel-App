@@ -1,0 +1,30 @@
+<% @locations= current_user.locations%>
+<p>
+  <ol>
+
+<% @locations.each do|location|%>
+
+<li>Location Name: <%= location.name%>
+  <br>
+  Description:<% location.description%></li>
+       <br>Reviews:
+
+        <% if location.reviews.count>0 %>
+        <% location.reviews.each do |review|%>
+            <%=review.contents%>
+        <% end %>
+        Aggregate Review rating:
+          <% end %>
+          <br>
+          <form><input type="hidden" id="hidden_id" value ="<%=location.id%>"></form>
+
+<button id = "edit_location" value=<%=location.id%>>Edit Location</button>
+<button id = "update_location" value="<%=location.id+1%>">Update Location</button>
+<button id = "delete_location">Delete Location</button>
+
+
+  <% end %>
+  <p>
+
+
+  <br>

@@ -1,0 +1,6 @@
+<%= form_for (Review.new) do |f| %>
+<br>
+Comment:
+<%= f.text_field :comment%>
+<%= f.submit "Send"%>
+<% end %>

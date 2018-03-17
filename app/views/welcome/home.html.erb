@@ -1,0 +1,12 @@
+<h1>Travel App</h1>
+Welcome <%= current_user.email if current_user%>! you are currently <%if user_signed_in? %> Signed In
+<br>
+<%= render 'locations/location_form'%>
+
+<% else%>
+not Signed in
+<%end%>
+<p>
+  <%= link_to "Locations", '/locations',method: :get%>
+<%=link_to "Sign In",new_user_session_path,method: :get%></li>
+<%=link_to "Sign Up",'/users/sign_up',method: :get%>
