@@ -1,30 +1,31 @@
+<div id="reviews_index"></div>
 <% @locations= current_user.locations%>
 <p>
   <ol>
 
 <% @locations.each do|location|%>
 
-<li>Location Name: <%= location.name%>
+<li>
+  <%= location.name%>
+
+<%= form_for (Review.new) do |f|%>
+   <%= f.hidden_field :location_id, :value => location.id %>
+  Comment:<%= f.text_field :comment%>
+  <br>Rating :<%= f.text_field :ratings%>
   <br>
-  Description:<% location.description%></li>
-       <br>Reviews:
+  <%= f.submit "Post",data:{disable_with: false}%>
+<% end %>
+<div id="reviews"><ol></ol></div>
 
-        <% if location.reviews.count>0 %>
-        <% location.reviews.each do |review|%>
-            <%=review.contents%>
-        <% end %>
-        Aggregate Review rating:
-          <% end %>
-          <br>
-          <form><input type="hidden" id="hidden_id" value ="<%=location.id%>"></form>
 
-<button id = "edit_location" value=<%=location.id%>>Edit Location</button>
-<button id = "update_location" value="<%=location.id+1%>">Update Location</button>
+<p>
+<button id = "show_location" value=<%=location.id%>>Show Details</button>
+<button id = "show_reviews" value="<%=location.id%>">Show Reviews</button>
 <button id = "delete_location">Delete Location</button>
 
-
+</li>
   <% end %>
   <p>
-
+     <div id="display" style="color:blue"></div>
 
   <br>

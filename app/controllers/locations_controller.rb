@@ -18,9 +18,35 @@ class LocationsController < ApplicationController
 
   end
 
+  def edit
+  #  binding.pry
+    @location = Location.find(params[:id].to_i)
+    respond_to do |format|
+      #format.json {render json: @location}
+      format.html {render :layout =>false, :partial => '/locations/location_form'}
+    end
+  end
+
+  def update
+    @location = Location.find(params[:id])
+    @location.update(location_params)
+
+      respond_to do |format|
+        format.json {render json: @location}
+        format.html {render :index}
+      end
+
+end
+
   def show
 
-    @location = Location.params([:id])
+    @location = Location.find(params[:id].to_i)
+    
+    respond_to do |format|
+      format.json {render json: @location}
+      format.html {render :index}
+    end
+
   end
 
   private
