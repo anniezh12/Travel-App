@@ -1,0 +1,7 @@
+<% locations.each do |location| %>
+<%= form_for location do |f|%>
+<%= f.submit "Update"%>
+<%= f.label location.name %>
+<%= link_to "Delete",location,method: :delete, remote: true%>
+<% end %>
+<% end %>

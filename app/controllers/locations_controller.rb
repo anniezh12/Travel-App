@@ -1,4 +1,11 @@
 class LocationsController < ApplicationController
+  def index
+    @locations = Location.all
+    respond_to do |format|
+      format.html { render :index}
+      format.js
+    end
+  end
   def new
     #@location = current_user.locations.new
     @location = Location.new

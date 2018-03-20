@@ -5,8 +5,10 @@ Welcome, <%= current_user.email if current_user%> you are currently <%if user_si
 not Signed In,Please Sign In to add a location!
 <%end%>
 <p>
-<%= link_to "Add Location", new_location_path, id: "addlocation", remote: true%>
+  <%= link_to "Display Locations", '/locations', id: "displaylocations", remote: true%>
 
+<%= link_to "Add Location", new_location_path, id: "addlocation", remote: true%>
+<div id="displayol"></div> 
 <%#= link_to "Edit", edit_location_path(location), id: "editloc", remote: true%>
 
 <p>
