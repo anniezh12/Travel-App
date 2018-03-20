@@ -1,7 +1,9 @@
 class LocationsController < ApplicationController
   def new
-    @location = current_user.locations.new
+    #@location = current_user.locations.new
+    @location = Location.new
   end
+
 
   def create
     @user = current_user
@@ -11,7 +13,7 @@ class LocationsController < ApplicationController
 
     if @location.save
       respond_to do |format|
-        format.json {render json: @location}
+        format.js
         format.html {render :show}
       end
     end
@@ -19,34 +21,40 @@ class LocationsController < ApplicationController
   end
 
   def edit
-  #  binding.pry
-    @location = Location.find(params[:id].to_i)
+    @location = Location.find(params[:id])
     respond_to do |format|
-      #format.json {render json: @location}
-      format.html {render :layout =>false, :partial => '/locations/location_form'}
+        format.js
     end
   end
 
   def update
     @location = Location.find(params[:id])
     @location.update(location_params)
-
       respond_to do |format|
         format.json {render json: @location}
-        format.html {render :index}
+        format.html {render :show}
+        format.js
       end
 
 end
 
   def show
 
-    @location = Location.find(params[:id].to_i)
-    
+    @location = Location.find(params[:id])
+
     respond_to do |format|
       format.json {render json: @location}
       format.html {render :index}
     end
 
+  end
+
+  def destroy
+    @location = Location.destroy(params[:id])
+    respond_to do |format|
+      format.html {render :root}
+      format.js
+    end
   end
 
   private

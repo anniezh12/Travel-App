@@ -1,0 +1,7 @@
+<li>
+<%= form_for location do |f|%>
+<%= f.submit "Update"%>
+<%=f.label :complete,location.name%>
+<%=link_to "(remove)",location,method: :delete,data:{confirmed: "Are you sure?"},remote: true %>
+<%end%>
+</li>

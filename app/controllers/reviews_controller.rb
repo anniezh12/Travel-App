@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
     #binding.pry
     @location = Location.find(params[:location_id].to_i)
     @reviews = @location.reviews
-
+#binding.pry
 
         render json: @reviews
 

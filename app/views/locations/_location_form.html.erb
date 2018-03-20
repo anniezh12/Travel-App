@@ -1,4 +1,4 @@
-<%= form_for (Location.new) do |f| %>
+<%= form_for Location.new,remote:true do |f| %>
 <br>
 Name:
 <%= f.text_field :name%>

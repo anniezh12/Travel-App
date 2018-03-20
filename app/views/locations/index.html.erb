@@ -1,13 +1,14 @@
+
 <div id="reviews_index"></div>
-<% @locations= current_user.locations%>
+<div id="container">
+<% @locations= current_user.locations if current_user%>
 <p>
   <ol>
-
+<% if @locations %>
 <% @locations.each do|location|%>
 
 <li>
   <%= location.name%>
-
 <%= form_for (Review.new) do |f|%>
    <%= f.hidden_field :location_id, :value => location.id %>
   Comment:<%= f.text_field :comment%>
@@ -19,13 +20,19 @@
 
 
 <p>
-<button id = "show_location" value=<%=location.id%>>Show Details</button>
+<button id = "show_location" value="<%=location.id%>">Show Details</button>
 <button id = "show_reviews" value="<%=location.id%>">Show Reviews</button>
-<button id = "delete_location">Delete Location</button>
+<button id = "delete_location" value="<%=location.id%>">Delete</button>
+
 
 </li>
   <% end %>
   <p>
-     <div id="display" style="color:blue"></div>
+     
 
   <br>
+</div>
+<%= link_to "Back", '/locations',method: :get%>
+<% else %>
+<h3>You have no Locations to see</h3>
+<% end %>

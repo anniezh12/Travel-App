@@ -7,42 +7,50 @@ function Location(resp){
 }
 
 Location.prototype.display = function(){
+document.getElementById('container').innerHTML = ""
+  $('#container').append(`
+    <h3>
+    ${this.name}
+    </h3>
 
-  $('#display').append(`
-    <p>Location Name:${this.name}
     <br>Description:${this.description}
     <br>Location:${this.location}
-    <br>Reviews:${this.reviews.map(review => `<br>${review.comment}`).join('')}
+    <h4><b>Reviews:</b></h4>
+
+    <ol>
+    ${this.reviews.map(review => `<li>${review.comment}</li>`).join('')}
+    </ol>
   `)
 }
-
+//Following JS will take care of appending a location details in the bottom of the page
 $(document).on('click', '#show_location', function (event) {
     event.preventDefault();
-    var c=$(this).val()
-  //    alert(c);
-
-     $.get(`/locations/${c}`).done(function(resp){
-      //  $(this).append(resp)
-         let  result = new Location(resp);
-         result.display();// call to prototype function
-
-
-        })
+    var c = $(this).val()
+    $.get(`/locations/${c}`).done(function(resp){
+    let  result = new Location(resp);
+    result.display();// call to prototype function
+      })
   })
 
 // Following Ajax will take care of showing reviews
+
   $(document).on('click', '#show_reviews', function (event) {
       event.preventDefault();
-       var currentId = $(this).val();
+      document.getElementById('container').innerHTML = ""
+      let currentId = $(this).val();
 
-
-       $.get(`/locations/${currentId}/reviews`).done(function(resp){
-
-   $('#reviews_index').append(`
-     ${resp.map(el=> `<br>${el.comment}`).join('')}
-       `)
+        $.get(`/locations/${currentId}/reviews`).done(function(resp){
+          let average = resp.reduce((a,b)=>{ return a+b.ratings},0)/resp.length;
+          $('#container').append(`
+            <h4>Average Ratings:${Math.floor(average)}</h4>
+        <h3>All Reviews </h3><ol>
+      ${resp.map(el=> `<li>${el.comment} with a rating of ${el.ratings}</li>`).join('')}
+</ol>
+        `)
           })
     })
+
+//following js will create a new review and append it on the record
 
   $(document).on('submit', '#new_review', function (event) {
       event.preventDefault();
@@ -62,3 +70,4 @@ $(document).on('click', '#show_location', function (event) {
 
           })
     })
+    

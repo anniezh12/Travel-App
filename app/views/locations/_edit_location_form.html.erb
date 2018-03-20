@@ -1,15 +1,15 @@
-<h1>Yoy are about to edit this page</h1>
-<%= form_for @location do |f| %>
-<br>
-Name:
-<%= f.text_field :name, place_holder :@location.name%>
-<br>
-Description:
- <%= f.text_field :description%>
- <br>
- location:
- <%= f.text_field :location%>
- <br>
- Image:<%= f.text_field :img_url%>
- <%= f.submit "Update"%>
-<% end %>
+      <%= form_for @location,remote: true do |f| %>
+      <br>
+      Name:
+      <%= f.text_field :name%>
+      <br>
+      Description:
+       <%= f.text_field :description%>
+       <br>
+       location:
+       <%= f.text_field :location%>
+       <br>
+       Image:<%= f.text_field :img_url%>
+       <br>
+         <%= f.submit "Update"%>
+      <% end %>

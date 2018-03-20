@@ -1,0 +1,3 @@
+$('#new_location').hide();//hide the form
+$('#addlocation').show(); //showthe link
+$('#display ol').append('<%= j render(:partial => "location", :locals => {:location => @location})%>');
