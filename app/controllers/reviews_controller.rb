@@ -17,10 +17,10 @@ class ReviewsController < ApplicationController
   def create
     @location = Location.find(params[:review][:location_id].to_i)
     @review = @location.reviews.build(review_params)
-
+      @reviews = @location.reviews
     if @review.save
       respond_to do |format|
-        format.json {render json: @review}
+        format.json {render json: @reviews}
         format.html {render :show}
       end
     end

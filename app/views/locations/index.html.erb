@@ -1,7 +1,8 @@
 
 <div id="reviews_index"></div>
 <div id="container">
-<% @locations= current_user.locations if current_user%>
+<%# @locations= current_user.locations if current_user%>
+<%# @locations = Location.all%>
 <p>
   <ol>
 <% if @locations %>
@@ -9,6 +10,18 @@
 
 <li>
   <%= location.name%>
+  <%#= binding.pry%>
+      <% if location.reviews.length>0 %>
+
+
+      <ul>
+      <%# location.reviews.each do |review|%>
+      <li></li>
+      <%#end%>
+    </ul>
+  <% end%>
+  <div id="reviews_<%=location.id%>"><ol></ol></div>
+
 <%= form_for (Review.new) do |f|%>
    <%= f.hidden_field :location_id, :value => location.id %>
   Comment:<%= f.text_field :comment%>
@@ -16,15 +29,10 @@
   <br>
   <%= f.submit "Post",data:{disable_with: false}%>
 <% end %>
-<div id="reviews"><ol></ol></div>
-<%= link_to "Delete Location",location,method: :delete,remote: true%>
 
 <p>
 <button id = "show_location" value="<%=location.id%>">Show Details</button>
 <button id = "show_reviews" value="<%=location.id%>">Show Reviews</button>
-
-
-
 </li>
   <% end %>
   <p>

@@ -1,3 +1,5 @@
+
+
 function Location(resp){
   this.name = resp.name;
   this.location = resp.location;
@@ -25,8 +27,8 @@ document.getElementById('container').innerHTML = ""
 //Following JS will take care of appending a location details in the bottom of the page
 $(document).on('click', '#show_location', function (event) {
     event.preventDefault();
-    var c = $(this).val()
-    $.get(`/locations/${c}`).done(function(resp){
+    var locationId = $(this).val()
+    $.get(`/locations/${locationId}`).done(function(resp){
     let  result = new Location(resp);
     result.display();// call to prototype function
       })
@@ -54,20 +56,31 @@ $(document).on('click', '#show_location', function (event) {
 
   $(document).on('submit', '#new_review', function (event) {
       event.preventDefault();
-      var c=$('#review_location_id').val();
+      var locationId =$('#review_location_id').val();
       var formdata =$(this).serialize();
       var formfields = this;
 
-      alert(c)
        $.ajax(
          {
            type: "POST",
            url:'/reviews',
            data: formdata
          }).done(function(resp){
-             $(`#reviews ol`).append(`<li>Comment:${resp.comment}<br>Ratings:${resp.ratings}</li>`)
+           resp.forEach(review=>{
+             $(`#reviews_${review.location_id} ol`).append(`
+               <li>
+               Comment:${review.comment}
+                Ratings:${review.ratings}
+               </li>`);
+               })
                formfields.reset();
 
           })
     })
-    
+
+$(document).on('click',"#hideform",function(event){
+  event.preventDefault();
+  $('#new_location').hide();
+  $('#hideform').hide();
+
+})
