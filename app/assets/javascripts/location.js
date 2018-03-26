@@ -65,14 +65,14 @@ $(document).on('click', '#show_location', function (event) {
            type: "POST",
            url:'/reviews',
            data: formdata
-         }).done(function(resp){
-           resp.forEach(review=>{
+         }).done(function(review){
+
              $(`#reviews_${review.location_id} ol`).append(`
                <li>
                Comment:${review.comment}
                 Ratings:${review.ratings}
                </li>`);
-               })
+
                formfields.reset();
 
           })
@@ -83,4 +83,8 @@ $(document).on('click',"#hideform",function(event){
   $('#new_location').hide();
   $('#hideform').hide();
 
+})
+
+$(document).on("click","#clearAll",function(event){
+  $('#displayol').innerHTML=""
 })

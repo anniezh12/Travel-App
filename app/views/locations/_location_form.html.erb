@@ -9,7 +9,7 @@ Description:
  location:
  <%= f.text_field :location%>
  <br>
- Image:<%= f.text_field :img_url%>
- <%= f.submit "Create Location"%>
+ Image:<%= f.text_field :img_url%><br>
+ <%= f.submit "Create Location",data:{disable_with:false}%>
 <% end %>
 <a href="#" id="hideform">Not Now</a>

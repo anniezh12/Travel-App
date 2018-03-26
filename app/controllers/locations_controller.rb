@@ -48,9 +48,10 @@ end
   def show
 
     @location = Location.find(params[:id])
-
+#binding.pry
     respond_to do |format|
       format.json {render json: @location}
+      format.js
       format.html {render :index}
     end
 

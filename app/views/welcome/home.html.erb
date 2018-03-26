@@ -1,17 +1,13 @@
 <h1>Travel App</h1>
 Welcome, <%= current_user.email if current_user%> you are currently
-<%if user_signed_in? %> Signed In
-<br>
-<% else%>
-not Signed In,Please Sign In to add a location!
-<%end%>
+      <%if user_signed_in? %>
+      Signed In  <br>
+      <% else%>
+      not Signed In,Please Sign In to add a location!
+      <%end%>
 <p>
-  <%= link_to "Display Locations", '/locations', id: "displaylocations", remote: true%>
-
-<%= link_to "Add Location", new_location_path, id: "addlocation", remote: true%>
-
-
+      <%= link_to "Display Locations", '/locations', id: "displaylocations", remote: true%>
+      <%= link_to "Add Location", new_location_path, id: "addlocation", remote: true%>
+      <a href="#" id="clearAll">Clear All</a>
 <div id="displayol"></div>
-<%#= link_to "Edit", edit_location_path(location), id: "editloc", remote: true%>
-
-<p>
+<div id="showLoc" style="background-color:#cccccc"></div>

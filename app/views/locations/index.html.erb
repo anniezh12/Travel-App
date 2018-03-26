@@ -11,15 +11,7 @@
 <li>
   <%= location.name%>
   <%#= binding.pry%>
-      <% if location.reviews.length>0 %>
-
-
-      <ul>
-      <%# location.reviews.each do |review|%>
-      <li></li>
-      <%#end%>
-    </ul>
-  <% end%>
+      
   <div id="reviews_<%=location.id%>"><ol></ol></div>
 
 <%= form_for (Review.new) do |f|%>

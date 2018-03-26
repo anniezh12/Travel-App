@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
       @reviews = @location.reviews
     if @review.save
       respond_to do |format|
-        format.json {render json: @reviews}
+        format.json {render json: @review}
         format.html {render :show}
       end
     end

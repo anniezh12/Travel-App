@@ -1,37 +1,8 @@
-<div id="reviews_index"></div>
-<div id="container">
-<% @locations= current_user.locations if current_user%>
 <p>
-  <ol>
-<% if @locations %>
-<% @locations.each do|location|%>
-
-<li>
-  <%= location.name%>
-<%= form_for (Review.new) do |f|%>
-   <%= f.hidden_field :location_id, :value => location.id %>
-  Comment:<%= f.text_field :comment%>
-  <br>Rating :<%= f.text_field :ratings%>
-  <br>
-  <%= f.submit "Post",data:{disable_with: false}%>
-<% end %>
-<div id="reviews"><ol></ol></div>
-<%= link_to "Delete Location",location,method: :delete,remote: true%>
-
+NAME:<%= @location.name%>
+<br>
+Description : <%= @location.description%>
+<br>
+Location :<%= @location.location%>
+<br>
 <p>
-<button id = "show_location" value="<%=location.id%>">Show Details</button>
-<button id = "show_reviews" value="<%=location.id%>">Show Reviews</button>
-
-
-
-</li>
-  <% end %>
-  <p>
-
-
-  <br>
-</div>
-<%= link_to "Back", '/locations',method: :get%>
-<% else %>
-<h3>You have no Locations to see</h3>
-<% end %>
